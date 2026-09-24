@@ -49,6 +49,9 @@ def deposit(account_number):
 
     if amount > 0:
         accounts[account_number]["balance"] += amount
+        accounts[account_number]["transactions"].append(
+    f"Deposited ₹{amount} on {datetime.now().strftime('%d-%m-%Y %H:%M')}"
+)
         print("Deposit successful!")
         print("New Balance: ₹", accounts[account_number]["balance"])
     else:
@@ -62,6 +65,9 @@ def withdraw(account_number):
         print("Insufficient balance.")
     else:
         accounts[account_number]["balance"] -= amount
+        accounts[account_number]["transactions"].append(
+    f"Withdrew ₹{amount} on {datetime.now().strftime('%d-%m-%Y %H:%M')}"
+)
         print("Withdrawal successful!")
         print("New Balance: ₹", accounts[account_number]["balance"])
 def transfer(account_number):
@@ -77,10 +83,25 @@ def transfer(account_number):
     else:
         accounts[account_number]["balance"] -= amount
         accounts[receiver]["balance"] += amount
+        accounts[account_number]["transactions"].append(
+    f"Transferred ₹{amount} to Account {receiver} on {datetime.now().strftime('%d-%m-%Y %H:%M')}"
+)
+
+accounts[receiver]["transactions"].append(
+    f"Received ₹{amount} from Account {account_number} on {datetime.now().strftime('%d-%m-%Y %H:%M')}"
+)
 
         print("Transfer successful!")
         print("Amount transferred: ₹", amount)
         print("New Balance: ₹", accounts[account_number]["balance"])
+def transaction_history(account_number):
+    print("\n--- TRANSACTION HISTORY ---")
+
+    if len(accounts[account_number]["transactions"]) == 0:
+        print("No transactions yet.")
+    else:
+        for transaction in accounts[account_number]["transactions"]:
+            print(transaction)
 def account_menu(account_number):
     while True:
         print("\n===== ACCOUNT MENU =====")
@@ -102,6 +123,8 @@ def account_menu(account_number):
             withdraw(account_number)
         elif choice == "4":
             transfer(account_number)
+        elif choice == "5":
+            transaction_history(account_number)
         elif choice == "7":
             print("Logged out successfully.")
             break
