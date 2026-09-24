@@ -40,6 +40,11 @@ def login():
 
     return None
 
+def check_balance(account_number):
+    balance = accounts[account_number]["balance"]
+    print("\n--- ACCOUNT BALANCE ---")
+    print("Current Balance: ₹", balance)
+
 def main():
     while True:
         print("\n===== SIMPLE SMART BANKING SYSTEM =====")
@@ -61,3 +66,4 @@ def main():
 
 
 main()
+   
