@@ -44,7 +44,26 @@ def check_balance(account_number):
     balance = accounts[account_number]["balance"]
     print("\n--- ACCOUNT BALANCE ---")
     print("Current Balance: ₹", balance)
+def account_menu(account_number):
+    while True:
+        print("\n===== ACCOUNT MENU =====")
+        print("1. Check Balance")
+        print("2. Deposit")
+        print("3. Withdraw")
+        print("4. Transfer")
+        print("5. Transaction History")
+        print("6. Change PIN")
+        print("7. Logout")
 
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            check_balance(account_number)
+        elif choice == "7":
+            print("Logged out successfully.")
+            break
+        else:
+            print("This feature will be added soon.")
 def main():
     while True:
         print("\n===== SIMPLE SMART BANKING SYSTEM =====")
@@ -57,7 +76,10 @@ def main():
         if choice == "1":
             create_account()
         elif choice == "2":
-            login()
+            account_number = login()
+
+if account_number is not None:
+    account_menu(account_number)
         elif choice == "3":
             print("Thank you for using our banking system!")
             break
