@@ -64,6 +64,23 @@ def withdraw(account_number):
         accounts[account_number]["balance"] -= amount
         print("Withdrawal successful!")
         print("New Balance: ₹", accounts[account_number]["balance"])
+def transfer(account_number):
+    receiver = int(input("Enter receiver account number: "))
+    amount = float(input("Enter amount to transfer: ₹ "))
+
+    if receiver not in accounts:
+        print("Receiver account not found.")
+    elif amount <= 0:
+        print("Please enter a valid amount.")
+    elif amount > accounts[account_number]["balance"]:
+        print("Insufficient balance.")
+    else:
+        accounts[account_number]["balance"] -= amount
+        accounts[receiver]["balance"] += amount
+
+        print("Transfer successful!")
+        print("Amount transferred: ₹", amount)
+        print("New Balance: ₹", accounts[account_number]["balance"])
 def account_menu(account_number):
     while True:
         print("\n===== ACCOUNT MENU =====")
@@ -83,6 +100,8 @@ def account_menu(account_number):
             deposit(account_number)
         elif choice == "3":
             withdraw(account_number)
+        elif choice == "4":
+            transfer(account_number)
         elif choice == "7":
             print("Logged out successfully.")
             break
