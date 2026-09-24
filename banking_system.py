@@ -87,13 +87,12 @@ def transfer(account_number):
     f"Transferred ₹{amount} to Account {receiver} on {datetime.now().strftime('%d-%m-%Y %H:%M')}"
 )
 
-accounts[receiver]["transactions"].append(
-    f"Received ₹{amount} from Account {account_number} on {datetime.now().strftime('%d-%m-%Y %H:%M')}"
-)
-
-        print("Transfer successful!")
-        print("Amount transferred: ₹", amount)
-        print("New Balance: ₹", accounts[account_number]["balance"])
+    accounts[receiver]["transactions"].append(
+        f"Received ₹{amount} from Account {account_number} on    {datetime.now().strftime('%d-%m-%Y %H:%M')}"
+    )
+    print("Transfer successful!")
+    print("Amount transferred: ₹", amount)
+    print("New Balance: ₹", accounts[account_number]["balance"])
 def transaction_history(account_number):
     print("\n--- TRANSACTION HISTORY ---")
 
