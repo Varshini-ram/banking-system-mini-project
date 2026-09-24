@@ -77,9 +77,8 @@ def main():
             create_account()
         elif choice == "2":
             account_number = login()
-
-if account_number is not None:
-    account_menu(account_number)
+            if account_number is not None:
+                account_menu(account_number)
         elif choice == "3":
             print("Thank you for using our banking system!")
             break
