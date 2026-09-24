@@ -53,6 +53,17 @@ def deposit(account_number):
         print("New Balance: ₹", accounts[account_number]["balance"])
     else:
         print("Please enter a valid amount.")
+def withdraw(account_number):
+    amount = float(input("Enter amount to withdraw: ₹ "))
+
+    if amount <= 0:
+        print("Please enter a valid amount.")
+    elif amount > accounts[account_number]["balance"]:
+        print("Insufficient balance.")
+    else:
+        accounts[account_number]["balance"] -= amount
+        print("Withdrawal successful!")
+        print("New Balance: ₹", accounts[account_number]["balance"])
 def account_menu(account_number):
     while True:
         print("\n===== ACCOUNT MENU =====")
@@ -70,6 +81,8 @@ def account_menu(account_number):
             check_balance(account_number)
         elif choice == "2":
             deposit(account_number)
+        elif choice == "3":
+            withdraw(account_number)
         elif choice == "7":
             print("Logged out successfully.")
             break
