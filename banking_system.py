@@ -101,6 +101,15 @@ def transaction_history(account_number):
     else:
         for transaction in accounts[account_number]["transactions"]:
             print(transaction)
+def change_pin(account_number):
+    old_pin = input("Enter your current PIN: ")
+    new_pin = input("Enter your new 4-digit PIN: ")
+
+    if accounts[account_number]["pin"] == old_pin:
+        accounts[account_number]["pin"] = new_pin
+        print("PIN changed successfully!")
+    else:
+        print("Incorrect current PIN.")
 def account_menu(account_number):
     while True:
         print("\n===== ACCOUNT MENU =====")
@@ -124,6 +133,8 @@ def account_menu(account_number):
             transfer(account_number)
         elif choice == "5":
             transaction_history(account_number)
+        elif choice == "6":
+            change_pin(account_number)
         elif choice == "7":
             print("Logged out successfully.")
             break
